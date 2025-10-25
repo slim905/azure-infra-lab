@@ -25,3 +25,7 @@ resource "azurerm_resource_group" "rg" {
   location = "West US"
 }
 
+resource "azurerm_resource_group" "rg-2" {
+  name     = var.second_rg
+  location = "East US"
+}
