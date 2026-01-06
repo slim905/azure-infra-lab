@@ -9,15 +9,11 @@ output "secondary_rg_name" {
 }
 
 output "vnet_name" {
-  value = azurerm_virtual_network.main.name
-}
-
-output "vm_private_ip" {
-  value = azurerm_network_interface.main.private_ip_address
+  value = azurerm_virtual_network.main_vnet.name
 }
 
 output "storage_account_name" {
-  value = azurerm_storage_account.main.name
+  value = azurerm_storage_account.stg-2.name
 }
 
 output "subnet_ids" {
