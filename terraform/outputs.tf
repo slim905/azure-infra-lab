@@ -17,5 +17,8 @@ output "storage_account_name" {
 }
 
 output "subnet_ids" {
-  value = { for k, v in azurerm_subnet.subnets : k => v.id }
+  value = {
+    app = azurerm_subnet.app_subnet.id
+    db  = azurerm_subnet.db_subnet.id
+  }
 }
