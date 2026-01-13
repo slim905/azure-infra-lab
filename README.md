@@ -10,10 +10,14 @@ This Terraform project provisions a basic Azure environment consisting of a virt
 - **Storage Account:** Standard_LRS
 
 ## Repository Structure
+├── bastion.tf
+├── compute.tf
 ├── main.tf
-├── variables.tf
+├── networking.tf
 ├── outputs.tf
-├── terraform.tfvars
+├── provider.tf
+├── variables.tf
+├── versions.tf
 └── README.md
 
 ## Prerequisites
@@ -26,7 +30,3 @@ This Terraform project provisions a basic Azure environment consisting of a virt
 terraform init
 terraform plan
 terraform apply
-
-## Outputs
-- VM Private IP
-- Storage Account Name
