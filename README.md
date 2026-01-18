@@ -10,7 +10,6 @@ This Terraform project provisions a basic Azure environment consisting of a virt
 - **Storage Account:** Standard_LRS
 
 ## Repository Structure
-├── bastion.tf
 ├── compute.tf
 ├── main.tf
 ├── networking.tf
