@@ -1,7 +1,7 @@
 resource "azurerm_network_interface" "linux_nic" {
   name                = "nic-linux-01"
-  location            = azurerm_resource_group.rg-1.location
-  resource_group_name = azurerm_resource_group.rg-1.name
+  location            = azurerm_resource_group.main.location
+  resource_group_name = azurerm_resource_group.main.name
 
   ip_configuration {
     name                          = "internal"
@@ -13,8 +13,8 @@ resource "azurerm_network_interface" "linux_nic" {
 
 resource "azurerm_linux_virtual_machine" "linux_vm" {
   name                = "vm-linux-01"
-  location            = azurerm_resource_group.rg-1.location
-  resource_group_name = azurerm_resource_group.rg-1.name
+  location            = azurerm_resource_group.main.location
+  resource_group_name = azurerm_resource_group.main.name
   size                = "Standard_B2s"
 
   admin_username = "azureuser"
