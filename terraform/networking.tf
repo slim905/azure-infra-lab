@@ -42,7 +42,7 @@ resource "azurerm_network_security_rule" "allow_ssh" {
   destination_address_prefix  = "*"
   resource_group_name         = azurerm_resource_group.main.name
   network_security_group_name = azurerm_network_security_group.nsg.name
-  depends_on = [azurerm_network_security_group.nsg]
+  depends_on                  = [azurerm_network_security_group.nsg]
 }
 
 resource "azurerm_subnet_network_security_group_association" "app_assoc" {

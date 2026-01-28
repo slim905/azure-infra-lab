@@ -1,5 +1,5 @@
 # Main resource group for labs
 resource "azurerm_resource_group" "main" {
-  name     = var.first_rg
+  name     = var.resource_group_name
   location = var.location
 }
