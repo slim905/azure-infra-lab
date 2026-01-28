@@ -1,9 +1,23 @@
-# Terraform files
+# Terraform
 **/.terraform/*
 *.tfstate
-*.tfstate.backup
-terraform.tfvars
-*.lock.hcl
+*.tfstate.*
 crash.log
+
+# Variable files (may contain secrets)
+terraform.tfvars
+*.tfvars
+
+# Override files
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Local auth / helper scripts
 *.ps1
 load-terraform-env.sh
+
+# OS / editor noise
+.DS_Store
+.vscode/
