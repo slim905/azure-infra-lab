@@ -5,7 +5,7 @@ resource "azurerm_network_interface" "linux_nic" {
 
   ip_configuration {
     name                          = "internal"
-    subnet_id                     = azurerm_subnet.db_subnet.id
+    subnet_id                     = module.network.subnet_ids["db"]
     private_ip_address_allocation = "Dynamic"
   }
 

@@ -5,17 +5,14 @@ output "resource_group_name" {
 
 output "vnet_name" {
   description = "Virtual network name"
-  value       = azurerm_virtual_network.main_vnet.name
+  value       = module.network.vnet_name
 }
 
 output "subnet_ids" {
   description = "Subnet IDs by function"
-  value = {
-    app = azurerm_subnet.app_subnet.id
-    db  = azurerm_subnet.db_subnet.id
-  }
+  value = module.network.subnet_ids
 }
 
 output "db_subnet_id" {
-  value = azurerm_subnet.db_subnet.id
+  value = module.network.subnet_ids["db"]
 }
