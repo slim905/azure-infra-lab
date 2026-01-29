@@ -10,7 +10,7 @@ output "vnet_name" {
 
 output "subnet_ids" {
   description = "Subnet IDs by function"
-  value = module.network.subnet_ids
+  value       = module.network.subnet_ids
 }
 
 output "db_subnet_id" {

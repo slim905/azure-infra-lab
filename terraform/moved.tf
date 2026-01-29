@@ -32,3 +32,13 @@ moved {
   from = azurerm_subnet_network_security_group_association.db_assoc
   to   = module.network.azurerm_subnet_network_security_group_association.db_assoc
 }
+
+moved {
+  from = azurerm_network_interface.linux_nic
+  to   = module.compute.azurerm_network_interface.linux_nic
+}
+
+moved {
+  from = azurerm_linux_virtual_machine.linux_vm
+  to   = module.compute.azurerm_linux_virtual_machine.linux_vm
+}

@@ -1,43 +1,14 @@
-resource "azurerm_network_interface" "linux_nic" {
-  name                = "nic-linux-01"
-  location            = azurerm_resource_group.main.location
+module "compute" {
+  source              = "./modules/compute"
   resource_group_name = azurerm_resource_group.main.name
-
-  ip_configuration {
-    name                          = "internal"
-    subnet_id                     = module.network.subnet_ids["db"]
-    private_ip_address_allocation = "Dynamic"
-  }
-
-}
-
-resource "azurerm_linux_virtual_machine" "linux_vm" {
-  name                = "vm-linux-01"
   location            = azurerm_resource_group.main.location
-  resource_group_name = azurerm_resource_group.main.name
-  size                = "Standard_B2s"
 
-  admin_username = "azureuser"
+  subnet_id = module.network.subnet_ids["db"]
 
-  network_interface_ids = [
-    azurerm_network_interface.linux_nic.id
-  ]
+  nic_name = "nic-linux-01"
+  vm_name  = "vm-linux-01"
+  vm_size  = "Standard_B2s"
 
-  admin_ssh_key {
-    username   = "azureuser"
-    public_key = file("~/.ssh/id_rsa.pub")
-  }
-
-  os_disk {
-    caching              = "ReadWrite"
-    storage_account_type = "Standard_LRS"
-  }
-
-  source_image_reference {
-    publisher = "Canonical"
-    offer     = "0001-com-ubuntu-server-jammy"
-    sku       = "22_04-lts"
-    version   = "latest"
-  }
-
+  admin_username      = "azureuser"
+  ssh_public_key_path = "~/.ssh/id_rsa.pub"
 }
