@@ -1,23 +1,24 @@
-name: Terraform Plan
+name: Terraform Validate
 
 on:
   pull_request:
     paths:
       - "terraform/**"
-      - ".github/workflows/terraform-plan.yml"
+      - ".github/workflows/terraform-validate.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "terraform/**"
+      - ".github/workflows/terraform-validate.yml"
 
 jobs:
-  plan-dev:
+  validate-dev:
     runs-on: ubuntu-latest
+
     defaults:
       run:
         working-directory: terraform/environments/dev
-
-    env:
-      ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
-      ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
-      ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
-      ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
 
     steps:
       - name: Checkout
@@ -26,8 +27,11 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v4
 
-      - name: Terraform Init
-        run: terraform init
+      - name: Terraform Format Check
+        run: terraform fmt -check -recursive
 
-      - name: Terraform Plan
-        run: terraform plan -no-color
+      - name: Terraform Init
+        run: terraform init -backend=false
+
+      - name: Terraform Validate
+        run: terraform validate
