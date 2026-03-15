@@ -7,6 +7,7 @@ crash.log
 # Variable files (may contain secrets)
 terraform.tfvars
 *.tfvars
+!environments/**/*.tfvars
 
 # Override files
 override.tf
