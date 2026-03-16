@@ -1,4 +1,5 @@
 # Azure Infrastructure Lab with Terraform
+_Azure / Terraform / DevOps project by Aniron Abraham_
 
 ## Overview
 
@@ -257,4 +258,4 @@ Planned next steps for this project include:
 
 ## Author
 
-Built as part of an Azure / Terraform / DevOps learning project focused on building production-style cloud infrastructure and portfolio-ready Infrastructure as Code.
+Created by Aniron Abraham as part of an Azure / Terraform / DevOps learning project focused on building production-style cloud infrastructure and portfolio-ready Infrastructure as Code.
