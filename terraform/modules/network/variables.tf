@@ -5,3 +5,7 @@ variable "vnet_address_space" { type = list(string) }
 variable "app_subnet_cidr" { type = string }
 variable "db_subnet_cidr" { type = string }
 variable "nsg_name" { type = string }
+variable "aks_subnet_cidr" {
+  type        = string
+  description = "CIDR for AKS subnet"
+}

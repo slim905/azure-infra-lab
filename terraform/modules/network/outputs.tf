@@ -2,6 +2,7 @@ output "subnet_ids" {
   value = {
     app = azurerm_subnet.app_subnet.id
     db  = azurerm_subnet.db_subnet.id
+    aks = azurerm_subnet.aks_subnet.id
   }
 }
 

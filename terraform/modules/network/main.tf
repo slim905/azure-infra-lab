@@ -19,6 +19,13 @@ resource "azurerm_subnet" "db_subnet" {
   address_prefixes     = [var.db_subnet_cidr]
 }
 
+resource "azurerm_subnet" "aks_subnet" {
+  name                 = "aks"
+  resource_group_name  = var.resource_group_name
+  virtual_network_name = azurerm_virtual_network.main_vnet.name
+  address_prefixes     = [var.aks_subnet_cidr]
+}
+
 resource "azurerm_network_security_group" "nsg" {
   name                = var.nsg_name
   location            = var.location
