@@ -61,8 +61,6 @@ This lab was built to practice and demonstrate:
 
 ## Architecture Diagram
 
-## Architecture Diagram
-
 ```mermaid
 flowchart TD
     A["GitHub Repository"] --> B["GitHub Actions"]
