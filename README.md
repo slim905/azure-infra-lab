@@ -35,6 +35,37 @@ This lab was built to practice and demonstrate:
 
 ---
 
+## Highlights
+
+- Built modular Terraform for Azure networking and compute
+- Refactored flat Terraform into reusable modules without recreating infrastructure
+- Moved from local state to Azure remote state
+- Implemented GitHub Actions validation and planning workflows
+- Separated security resources from workload resources
+- Managed Azure authentication securely through Key Vault and environment variables
+
+---
+
+## Current Deployment Status
+
+Currently deployed in `dev`:
+
+- Resource group: `rg-terraform-lab-1`
+- Virtual network: `demo-vnet`
+- App subnet: `10.0.1.0/24`
+- DB subnet: `10.0.2.0/24`
+- Network Security Group: `demo-nsg`
+- Linux VM: `vm-linux-01`
+- Remote state backend in Azure Storage
+- Key Vault separated into `rg-security`
+
+Prepared but not deployed:
+
+- `staging`
+- `prod`
+
+---
+
 ## Architecture
 
 ### Current `dev` environment includes
@@ -84,6 +115,9 @@ flowchart TD
     N --> L
     N --> M
     M --> O["Linux VM<br/>vm-linux-01"]
+```
+
+---
 
 ## Repository Structure
 
@@ -141,6 +175,7 @@ Authentication is handled using:
 Secrets are retrieved from Key Vault using helper scripts for local development.
 
 ### Local auth helper scripts
+
 - `load-terraform-env.ps1`
 - `load-terraform-env.sh`
 
@@ -183,6 +218,7 @@ GitHub Actions is used for Terraform validation and planning.
   - initializes Terraform and generates a plan for the `dev` environment
 
 This helps catch:
+
 - formatting issues
 - configuration errors
 - unintended infrastructure changes
@@ -192,14 +228,17 @@ This helps catch:
 ## How to Use
 
 ### 1. Load Azure credentials
+
 Use either PowerShell or Bash helper scripts to load environment variables from Azure Key Vault.
 
 #### PowerShell
+
 ```powershell
 .\load-terraform-env.ps1
 ```
 
 #### Bash
+
 ```bash
 source ./load-terraform-env.sh
 ```
@@ -207,6 +246,7 @@ source ./load-terraform-env.sh
 ---
 
 ### 2. Move into the desired environment
+
 ```bash
 cd terraform/environments/dev
 ```
@@ -214,6 +254,7 @@ cd terraform/environments/dev
 ---
 
 ### 3. Initialize Terraform
+
 ```bash
 terraform init
 ```
@@ -221,6 +262,7 @@ terraform init
 ---
 
 ### 4. Review the plan
+
 ```bash
 terraform plan
 ```
@@ -228,6 +270,7 @@ terraform plan
 ---
 
 ### 5. Apply changes
+
 ```bash
 terraform apply
 ```
@@ -284,4 +327,4 @@ Planned next steps for this project include:
 
 ## Author
 
-Created by Aniron Abraham as part of an Azure / Terraform / DevOps learning project focused on building production-style cloud infrastructure and portfolio-ready Infrastructure as Code.
+Created by **Aniron Abraham** as part of an Azure / Terraform / DevOps learning project focused on building production-style cloud infrastructure and portfolio-ready Infrastructure as Code.
