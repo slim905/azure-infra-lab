@@ -59,6 +59,32 @@ This lab was built to practice and demonstrate:
 
 ---
 
+## Architecture Diagram
+
+```mermaid
+flowchart TD
+    A[GitHub Repository] --> B[GitHub Actions]
+    B --> C[Terraform Validate]
+    B --> D[Terraform Plan]
+
+    E[Azure Key Vault<br/>slim905-demo-kv] --> F[Environment Variables]
+    F --> G[Terraform Execution]
+
+    H[Azure Storage Account<br/>Remote State] --> G
+
+    G --> I[Resource Group<br/>rg-terraform-lab-1]
+    G --> J[Resource Group<br/>rg-security]
+
+    J --> E
+
+    I --> K[Virtual Network<br/>demo-vnet]
+    K --> L[App Subnet<br/>10.0.1.0/24]
+    K --> M[DB Subnet<br/>10.0.2.0/24]
+    I --> N[Network Security Group<br/>demo-nsg]
+    N --> L
+    N --> M
+    M --> O[Linux VM<br/>vm-linux-01]
+
 ## Repository Structure
 
 ```text
