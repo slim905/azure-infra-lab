@@ -8,6 +8,7 @@ module "network" {
 
   app_subnet_cidr = var.app_subnet_cidr
   db_subnet_cidr  = var.db_subnet_cidr
+  aks_subnet_cidr = var.aks_subnet_cidr
 
   nsg_name = var.nsg_name
 }

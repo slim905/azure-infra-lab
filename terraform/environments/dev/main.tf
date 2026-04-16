@@ -32,3 +32,21 @@ module "compute" {
   admin_username      = var.admin_username
   ssh_public_key_path = var.ssh_public_key_path
 }
+
+module "aks" {
+  source              = "../../modules/aks"
+  resource_group_name = azurerm_resource_group.main.name
+  location            = azurerm_resource_group.main.location
+
+  cluster_name       = var.aks_cluster_name
+  dns_prefix         = var.aks_dns_prefix
+  kubernetes_version = var.aks_kubernetes_version
+  node_count         = var.aks_node_count
+  vm_size            = var.aks_vm_size
+
+  aks_subnet_id = module.network.subnet_ids["aks"]
+
+  pod_cidr       = var.aks_pod_cidr
+  service_cidr   = var.aks_service_cidr
+  dns_service_ip = var.aks_dns_service_ip
+}

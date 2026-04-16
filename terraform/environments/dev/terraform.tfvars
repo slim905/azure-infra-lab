@@ -13,3 +13,12 @@ vm_name             = "vm-linux-01"
 vm_size             = "Standard_B2s"
 admin_username      = "azureuser"
 ssh_public_key_path = "../../keys/dev-azureuser.pub"
+
+aks_cluster_name       = "aks-dev-01"
+aks_dns_prefix         = "aksdev01"
+aks_kubernetes_version = "1.35.1"
+aks_node_count         = 1
+aks_vm_size            = "Standard_D2s_v3"
+aks_pod_cidr           = "10.244.0.0/16"
+aks_service_cidr       = "10.1.0.0/16"
+aks_dns_service_ip     = "10.1.0.10"

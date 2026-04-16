@@ -34,6 +34,12 @@ variable "db_subnet_cidr" {
   default     = "10.0.2.0/24"
 }
 
+variable "aks_subnet_cidr" {
+  type        = string
+  description = "CIDR for AKS subnet"
+  default     = "10.0.3.0/24"
+}
+
 variable "nsg_name" {
   description = "Name of the Network Security Group"
   type        = string
