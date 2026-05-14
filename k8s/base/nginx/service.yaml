@@ -4,7 +4,7 @@ metadata:
   name: nginx-test-svc
   namespace: demo-apps
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: nginx-test
   ports:

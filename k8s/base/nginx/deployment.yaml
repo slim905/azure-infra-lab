@@ -18,6 +18,12 @@ spec:
           image: nginx:stable
           ports:
             - containerPort: 80
+          env:
+            - name: APP_MESSAGE
+              valueFrom:
+                secretKeyRef:
+                  name: nginx-demo-secret
+                  key: APP_MESSAGE
           volumeMounts:
             - name: nginx-custom-page
               mountPath: /usr/share/nginx/html/index.html
