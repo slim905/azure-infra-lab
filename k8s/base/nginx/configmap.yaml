@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-custom-page
+  namespace: demo-apps
+data:
+  index.html: |
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>AKS Lab</title>
+    </head>
+    <body>
+      <h1>AKS Lab is Working</h1>
+      <p>Deployed by Lord Aniron on Azure Kubernetes Service.</p>
+    </body>
+    </html>

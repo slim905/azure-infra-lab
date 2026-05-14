@@ -18,3 +18,11 @@ spec:
           image: nginx:stable
           ports:
             - containerPort: 80
+          volumeMounts:
+            - name: nginx-custom-page
+              mountPath: /usr/share/nginx/html/index.html
+              subPath: index.html
+      volumes:
+        - name: nginx-custom-page
+          configMap:
+            name: nginx-custom-page
