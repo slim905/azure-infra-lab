@@ -22,3 +22,8 @@ load-terraform-env.sh
 # OS / editor noise
 .DS_Store
 .vscode/
+
+# Python
+.venv/
+__pycache__/
+*.pyc
