@@ -41,6 +41,18 @@ def get_aks_status(container_client, resource_group, aks_cluster_name):
 
     except ResourceNotFoundError:
         return "Not Found"
+
+def get_cost_risk(vm_power_state, aks_status):
+    vm_active = vm_power_state not in ["VM deallocated", "Not Found"]
+    aks_active = aks_status != "Not Found"
+
+    if vm_active and aks_active:
+        return "HIGH"
+    elif vm_active or aks_active:
+        return "MEDIUM"
+    else:
+        return "LOW"
+
     
 resource_group = "rg-terraform-lab-1"
 environment = "dev"
@@ -66,6 +78,11 @@ container_client = ContainerServiceClient(
     subscription_id
 )
 
+resource_group_status = get_resource_group_status(
+    resource_client,
+    resource_group
+)
+
 vm_power_state = get_vm_status(
     compute_client,
     resource_group,
@@ -78,9 +95,9 @@ aks_status = get_aks_status(
     aks_cluster_name
 )
 
-resource_group_status = get_resource_group_status(
-    resource_client,
-    resource_group
+cost_risk = get_cost_risk(
+    vm_power_state,
+    aks_status
 )
 
 print("Azure Lab Status")
@@ -90,3 +107,4 @@ print("Resource Group:", resource_group)
 print("Resource Group Status:", resource_group_status)
 print("Linux VM:", vm_power_state)
 print("AKS Cluster:", aks_status)
+print("Cost Risk:", cost_risk)
