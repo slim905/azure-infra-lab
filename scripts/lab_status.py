@@ -4,6 +4,7 @@ from azure.identity import DefaultAzureCredential
 from azure.mgmt.resource.resources import ResourceManagementClient
 from azure.mgmt.compute import ComputeManagementClient
 from azure.core.exceptions import ResourceNotFoundError
+from azure.mgmt.containerservice import ContainerServiceClient
 
 def get_vm_status(compute_client, resource_group, vm_name):
     try:
@@ -29,9 +30,22 @@ def get_resource_group_status(resource_client, resource_group):
     except ResourceNotFoundError:
         return "Not Found"
 
+def get_aks_status(container_client, resource_group, aks_cluster_name):
+    try:
+        cluster = container_client.managed_clusters.get(
+            resource_group,
+            aks_cluster_name
+        )
+
+        return cluster.provisioning_state
+
+    except ResourceNotFoundError:
+        return "Not Found"
+    
 resource_group = "rg-terraform-lab-1"
 environment = "dev"
 vm_name = "vm-linux-01"
+aks_cluster_name = "aks-dev-01"
 
 subscription_id = os.getenv("ARM_SUBSCRIPTION_ID")
 
@@ -47,10 +61,21 @@ compute_client = ComputeManagementClient(
     subscription_id
 )
 
+container_client = ContainerServiceClient(
+    credential,
+    subscription_id
+)
+
 vm_power_state = get_vm_status(
     compute_client,
     resource_group,
     vm_name
+)
+
+aks_status = get_aks_status(
+    container_client,
+    resource_group,
+    aks_cluster_name
 )
 
 resource_group_status = get_resource_group_status(
@@ -64,3 +89,4 @@ print("Environment:", environment)
 print("Resource Group:", resource_group)
 print("Resource Group Status:", resource_group_status)
 print("Linux VM:", vm_power_state)
+print("AKS Cluster:", aks_status)
